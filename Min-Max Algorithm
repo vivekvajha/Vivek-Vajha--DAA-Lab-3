@@ -1,0 +1,53 @@
+#include<iostream>
+#include<time.h>
+using namespace std;
+
+void generate_random(int a[],int n)  //function for generating random numbers
+{ 
+    int i;
+    srand(time(0));
+    for(i=0;i<n;i++)
+    {
+        a[i]=rand()%100;
+        cout<<a[i]<<"\n";
+    } 
+}
+
+int main()
+{
+    int a[20];
+    int i, max, min, n;
+    clock_t st, et;
+    double ts;
+    
+    cout<<"Enter size of the array: "<<endl;  // Input size of the array
+    cin>>n;
+    cout<<"********"<<endl;
+    generate_random(a,n); 
+    
+    max = a[0];  // Assume first element as maximum and minimum
+    min = a[0];
+    
+    for(i=1; i<n; i++)  //Find maximum and minimum in all array elements.
+    {
+        if(a[i] > max)
+        {
+            max = a[i];
+        }    
+        if(a[i] < min)
+        {
+            min = a[i];
+        }
+    }
+    cout<<"\nMaximum element =" << max << "\n";  // Print maximum and minimum element
+    cout<<"Minimum element =" << min;
+    
+    
+    st=clock();                                   //For calculating the time of execution
+    (a, 0, n-1);
+    et=clock();
+    ts=(double)(et-st)/CLOCKS_PER_SEC;  
+
+    cout<<"\nThe total time of execution is: "<<ts;
+    return 0;
+}
